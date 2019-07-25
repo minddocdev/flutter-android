@@ -7,12 +7,10 @@
 # Requires: ubuntu:18.04
 # authors:  development@minddoc.com
 # ------------------------------------------------------
-FROM ubuntu:18.04
+FROM minddocdev/flutter
 
 LABEL maintainer="development@minddoc.com"
 
-ARG FLUTTER_VERSION=v1.7.8+hotfix.3
-ENV FLUTTER_PATH=/flutter/bin
 ENV VERSION_SDK_TOOLS "4333796"
 ENV ANDROID_HOME "/sdk"
 ENV PATH "$PATH:${ANDROID_HOME}/tools"
@@ -77,13 +75,5 @@ RUN yes | ${ANDROID_HOME}/tools/bin/sdkmanager "add-ons;addon-google_apis-google
 RUN yes | ${ANDROID_HOME}/tools/bin/sdkmanager --licenses
 
 ### FLUTTER
-
-RUN git clone --branch ${FLUTTER_VERSION} --depth=1 https://github.com/flutter/flutter.git && \
-  ${FLUTTER_PATH}/flutter doctor && \
-  apt-get remove -y curl unzip && \
-  apt autoremove -y && \
-  rm -rf /var/lib/apt/lists/*
-
-ENV PATH $PATH:${FLUTTER_PATH}/cache/dart-sdk/bin:${FLUTTER_PATH}
 
 RUN yes | flutter doctor --android-licenses
