@@ -21,6 +21,8 @@ RUN apt-get -qq update && \
   apt-get install -qqy --no-install-recommends \
   bzip2 \
   curl \
+  ruby-full \
+  vim-common \
   git-core \
   html2text \
   openjdk-8-jdk \
