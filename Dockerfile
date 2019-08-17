@@ -21,6 +21,7 @@ RUN apt-get -qq update && \
   apt-get install -qqy --no-install-recommends \
   bzip2 \
   curl \
+  build-essential \
   ruby-full \
   vim-common \
   git-core \
@@ -33,7 +34,7 @@ RUN apt-get -qq update && \
   lib32z1 \
   unzip \
   locales \
-  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && gem install bundler
 RUN locale-gen en_US.UTF-8
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
